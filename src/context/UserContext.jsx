@@ -8,7 +8,7 @@ export const UserProvider = ({ children }) => {
     const [user, setUser] = useState(currentUser || {email: null });
 
     const login = async (email, password) => {
-        const authenticatedUser = await signInUser({ email, password });
+        const authenticatedUser = await signInUser(email, password);
 
     if (authenticatedUser) {
         setUser(authenticatedUser);
@@ -21,7 +21,7 @@ export const UserProvider = ({ children }) => {
 
     return (
         // .provider component makes the redux store available to any nested components that need access to the redux store.
-        <UserContext.Provider value={{ user, login, logout }}>
+        <UserContext.Provider value={{ user, setUser, login, logout }}>
             {children}
         </UserContext.Provider>
     );
