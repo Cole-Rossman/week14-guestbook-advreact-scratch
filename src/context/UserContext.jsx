@@ -9,6 +9,7 @@ export const UserProvider = ({ children }) => {
 
     const login = async (email, password) => {
         const authenticatedUser = await signInUser(email, password);
+        console.log('authenticatedUser', authenticatedUser)
     if (authenticatedUser) {
         setUser(authenticatedUser);
       }

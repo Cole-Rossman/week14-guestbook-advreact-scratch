@@ -8,7 +8,7 @@ export default function UserHome() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('')
 
-  const { user, logout } = useUser();
+  const { user } = useUser();
   
   useEffect(() => {
     const fetchData = async () => {
@@ -43,7 +43,7 @@ export default function UserHome() {
       {entries.map((entry) => (
         <ul key={entry.id}>
           <h3>{entry.content}</h3>
-          <h4>{user.email}</h4>
+          <h4>From user: {user.email}</h4>
           <h5>{entry.created_at}</h5>
         </ul>
         ))}
