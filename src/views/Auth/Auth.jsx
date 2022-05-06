@@ -19,12 +19,11 @@ export default function Auth() {
     event.preventDefault();
     try{
     if (type === 'sign-in') {
-      const resp = await login(email,password);
+      const resp = await login(email, password);
       // not setting user here because login function does so in context
       history.push('/');
     } else {
       const resp = await signUpUser(email, password);
-      // console.log('resp', resp)
       setUser(resp.email);
       history.push('/');
     }
@@ -36,10 +35,10 @@ export default function Auth() {
   return (
     <>
     <h1>
-      <span className={type === 'sign-in' && authStyle.active} onClick={() => setType('sign-in')}>
+      <span className={type === 'sign-in' ? authStyle.active : ''} onClick={() => setType('sign-in')}>
           Sign In
       </span>
-      <span className={type === 'sign-up' && authStyle.active} onClick={() => setType('sign-up')}>
+      <span className={type === 'sign-up' ? authStyle.active : ''} onClick={() => setType('sign-up')}>
           Sign Up
       </span>
     </h1>
