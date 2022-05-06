@@ -10,7 +10,7 @@ export default function App() {
   const { currentUser } = useUser();
   return (
     <>
-    <Header />
+    {currentUser ? <Header /> : ''}
     <Switch>
       <Route path="/login">
         {!currentUser ? <Auth /> : <Redirect to="/" /> }
