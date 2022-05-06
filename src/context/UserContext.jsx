@@ -1,5 +1,5 @@
 import { createContext, useContext, useState } from "react";
-import { getUser, signInUser } from '../services/user';
+import { getUser, signInUser, signOutUser } from '../services/user';
 
 export const UserContext = createContext();
 
@@ -16,11 +16,12 @@ export const UserProvider = ({ children }) => {
 
     const logout = () => {
         setUser({ email: null });
+        signOutUser();
     };
 
     return (
         // .provider component makes the redux store available to any nested components that need access to the redux store.
-        <UserContext.Provider value={{ user, setUser, login, logout }}>
+        <UserContext.Provider value={{ user, setUser, login, logout, currentUser }}>
             {children}
         </UserContext.Provider>
     );

@@ -3,31 +3,31 @@ import { fetchEntries, createEntry } from '../../services/entries'
 import { useUser } from '../../context/UserContext';
 
 export default function UserHome() {
-  const [entry, setEntry] = useState([]);
+  const [entries, setEntries] = useState([]);
   const [description, setDescription] = useState('');
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('')
 
-  const { user } = useUser();
-  console.log('user', user)
+  const { user, logout } = useUser();
+  
   useEffect(() => {
     const fetchData = async () => {
     try {
       const data = await fetchEntries();
       console.log('data', data)
-      setEntry(data);
+      setEntries(data);
       setLoading(false);
     } catch (e) {
       setError(e.message);
     }
-  }
+  };
   fetchData();
   },[]);
 
   const handleSubmit = async () => {
     try {
       const newEntry = await createEntry({ userId: user.id, content: description });
-      setEntry((prevState) => [...prevState, newEntry]);
+      setEntries((prevState) => [...prevState, newEntry]);
     } catch (e) {
       setError(e.message);
     }
@@ -38,9 +38,15 @@ export default function UserHome() {
     <>
     <h1>Guestbook</h1>
     <div>
-      {entry.map((entry) => {
-        <h3 key={entry.id}>{entry.entries}</h3>
-      })}
+      {error && <p>{error}</p>}
+      <h2>Latest entries:</h2>
+      {entries.map((entry) => (
+        <ul key={entry.id}>
+          <h3>{entry.content}</h3>
+          <h4>{user.email}</h4>
+          <h5>{entry.created_at}</h5>
+        </ul>
+        ))}
       <div>
         <label>
           New Entry:
