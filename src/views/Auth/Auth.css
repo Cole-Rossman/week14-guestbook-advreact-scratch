@@ -1,5 +1,13 @@
 .active {
     color: green;
     text-decoration: underline;
-    margin: 20px;
+  }
+
+  .form {
+    display: flex;
+    justify-content: center;
+  }
+
+  .button {
+    margin: 5px;
   }

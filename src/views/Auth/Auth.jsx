@@ -16,16 +16,18 @@ export default function Auth() {
 
   const handleSubmit = async (event) => {
     // add preventDefault to prevent 1996 behavior in the form
-    event.preventDefault();
+    // event.preventDefault();
     try{
     if (type === 'sign-in') {
-      const resp = await login(email, password);
+      event.preventDefault();
+      await login(email, password);
       // not setting user here because login function does so in context
-      history.push('/');
+      history.replace('/');
     } else {
+      event.preventDefault();
       const resp = await signUpUser(email, password);
       setUser(resp.email);
-      history.push('/');
+      history.replace('/');
     }
     } catch (error) {
       setError(error.message);
@@ -42,7 +44,7 @@ export default function Auth() {
           Sign Up
       </span>
     </h1>
-    <form onSubmit={handleSubmit}>
+    <form className={authStyle.form} onSubmit={handleSubmit}>
       <label>
         Email:
       <input
@@ -61,7 +63,7 @@ export default function Auth() {
       onChange={(event) => setPassword(event.target.value)}
       />
       </label>
-      <button type='submit'>Submit</button>
+      <button className={authStyle.button} type='submit'>Submit</button>
       <p>{error}</p>
     </form>
     </>
