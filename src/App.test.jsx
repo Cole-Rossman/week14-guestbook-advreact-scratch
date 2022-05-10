@@ -71,5 +71,11 @@ describe('<App />', () => {
     const createdAt = await screen.findAllByRole('heading', { level: 5 });
     expect(createdAt[0]).toBeInTheDocument();
     expect(createdAt).toHaveLength(2);
+
+    const testContent1 = await screen.findByText(/hello friends/i);
+    expect(testContent1).toBeInTheDocument();
+
+    const testContent2 = await screen.findByText(/hello neighbor/i);
+    expect(testContent2).toBeInTheDocument();
   });
 });
