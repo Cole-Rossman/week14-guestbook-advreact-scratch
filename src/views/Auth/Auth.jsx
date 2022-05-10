@@ -26,7 +26,7 @@ export default function Auth() {
     } else {
       event.preventDefault();
       const resp = await signUpUser(email, password);
-      setUser(resp.email);
+      setUser(resp);
       history.replace('/');
     }
     } catch (error) {
