@@ -28,7 +28,6 @@ export default function UserHome() {
   const handleSubmit = async () => {
     try {
       const newEntry = await createEntry({ userId: user.id, content: description });
-      console.log('newEntry', newEntry)
       setEntries((prevState) => [newEntry[0], ...prevState]);
       setDescription('');
     } catch (e) {
@@ -46,7 +45,7 @@ export default function UserHome() {
       <div className={homeStyle.entry}>
         <label>
           New Entry:
-          <input type="text" value={description} onChange={(e) => setDescription(e.target.value)} />
+          <input placeholder='Leave a thought' type="text" value={description} onChange={(e) => setDescription(e.target.value)} />
         <button onClick={handleSubmit}>Save Entry</button>
         </label>
       </div>

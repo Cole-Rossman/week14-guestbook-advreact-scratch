@@ -1,4 +1,4 @@
-import { render, screen, waitForElementToBeRemoved } from '@testing-library/react';
+import { render, screen, waitFor, waitForElementToBeRemoved } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { setupServer } from 'msw/node';
 import { rest } from 'msw';
@@ -77,5 +77,16 @@ describe('<App />', () => {
 
     const testContent2 = await screen.findByText(/hello neighbor/i);
     expect(testContent2).toBeInTheDocument();
+
+   const inputTest = await screen.findByPlaceholderText(/leave a thought/i);
+   userEvent.type(inputTest, 'new entry');
+
+   const entryButtonTest = await screen.findByRole('button', { name: /save entry/i });
+   userEvent.click(entryButtonTest);
+   
+   const testContent3 = await screen.findByText(/new entry/i);
+   expect(testContent3).toBeInTheDocument();
+
   });
+
 });
