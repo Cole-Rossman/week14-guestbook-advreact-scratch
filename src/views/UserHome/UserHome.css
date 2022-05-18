@@ -1,0 +1,27 @@
+.item {
+    border: 2px black solid;
+    width: 350px;
+    
+}
+
+.list {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    overflow: scroll;
+}
+
+.entry {
+    display: flex;
+    justify-content: center;
+}
+
+h1 {
+    display: flex;
+    justify-content: center;
+}
+
+h2 {
+    display: flex;
+    justify-content: center;
+}
