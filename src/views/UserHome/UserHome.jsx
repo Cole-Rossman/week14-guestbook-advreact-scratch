@@ -16,6 +16,7 @@ export default function UserHome() {
     try {
       setLoading(true);
       const data = await fetchEntries();
+      console.log('data', data);
       setEntries(data);
       setLoading(false);
     } catch (e) {
